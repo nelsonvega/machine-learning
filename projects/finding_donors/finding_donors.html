@@ -13056,6 +13056,25 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    body[data-notebook-name] > #header #header-container:not(.show-panel), /* body has data-notebook-name attribute when 
+a notebook is open. this rule won't be applied when the notebook is not open (in 404 view for example) */
+#menubar-container #maintoolbar:not(.show-panel),
+#menubar-container ul.navbar-nav:not(.show-panel) {
+  display: none;
+}
+
+#menubar.only-panel #menus.navbar-default {
+    background: #fff;
+    border-color: #fff;
+}
+
+.toolbar.with-statusbar{
+    margin-top: 3px;
+    margin-bottom: 0;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -16562,7 +16581,13 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>AdaBoost  is the most appropiate algorithm because it has the highest F-score when the full data set is tested.</p>
+<p>AdaBoost  is the most appropiate algorithm because  of the following reasonss.</p>
+<ol>
+<li>It is better at solving a binary classification problem like this one.</li>
+<li>The performance is a lot better than a decision tree, it could also be improved by running the features in parallel.</li>
+<li>Since, it combines several other algorithms, like Decision Trees and leverage its result to come up with better outcome,the preddiction is more accurate</li>
+<li>Because this dataset noise can be tolerated by this algorithm</li>
+</ol>
 
 </div>
 </div>
@@ -16583,8 +16608,10 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-
-<pre><code>Since we picked the Adaboost algorithm,the algorithm creates a sequence of weak datasets.It assignes the same weight to each observation or row in the dataset.Since it is an iterative algorithm, depending on each learner result it updates the weight until the algorithm reaches the accuracy</code></pre>
+<p>The algorithm, we chose, Adaboost( Adaptive Boosting).It is a type of ensemble Learning because it is a composition of of weak learnings. By weak Leaners, we mean classifiers that produce predicton that are slightly better than random guessing, equivalent of 50%. The goals is to improve the accuracy of the prediction by combining a weighted sum of the n learners.
+It focuses on the incorrectly classified samples by assigning them a higher weight and allow the next classifier to predict. BY doing this it boost the classification accuracy.</p>
+<p>For Example:</p>
+<p>In this data set, lets say if if we use the capital-gain&gt;2174.0  as the the hipothesis then the sample makes more that 50K. We take 1000 samples, run through one decision tree classifier, Lets say the weak classifier got 800 correct and 200 wrong by runing the model against the training data. Then we assign the wrongly classified data a higher weight so that the next bag of data that is going to be classified by the weak learner, should include them along with new data. The data that was not classified the first time, will be correctly classified by another learner. In the end all the results are combined.</p>
 
 </div>
 </div>
@@ -16785,13 +16812,12 @@ Final F-score on the testing data: 0.7434
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ol>
-<li>education </li>
-<li>education_num</li>
-<li>capital-gain</li>
-<li>capital-list</li>
-<li>work-class</li>
+<li>education ( I picked education because I thought that would be important factor that will determine the salary)</li>
+<li>education_num( I picked education_num because I thought that will determine the salary as well)</li>
+<li>capital-gain ( I picked capita-gain because  that would be an indicator of hwo this persona handles money)</li>
+<li>hours-per-week (I picked hours per week represent how many hours and as a result how much money that person would make)</li>
+<li>work-class ( the work class was also a representation of person icome level  )</li>
 </ol>
-<p>Primarily because education, continuous education and the capital the person is an indicator of the person income.</p>
 
 </div>
 </div>
