@@ -13593,7 +13593,7 @@ $$ \epsilon = a^t, \textrm{for } 0 &lt; a &lt; 1 \hspace{50px}\epsilon = \frac{1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Load the &#39;sim_improved-learning&#39; file from the improved Q-Learning simulation</span>
@@ -13747,6 +13747,7 @@ The optimal policy for the smartcab in the given environment will one one where 
 <li>left : 0.00</li>
 </ul>
 <p>This is one state where the agent didn't learn the optimal step. Seems like didn't learn because never assigned anything to the None state and instead the right received the highest reward.</p>
+<p>If we increase the testing trials to 100 or 200 the safety rating drops drastically. it is definetely not ready for the real world..</p>
 
 </div>
 </div>
