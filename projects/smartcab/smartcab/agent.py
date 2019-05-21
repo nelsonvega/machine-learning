@@ -20,7 +20,7 @@ class LearningAgent(Agent):
         self.Q = dict()          # Create a Q-table which will be a dictionary of tuples
         self.epsilon = epsilon   # Random exploration factor
         self.alpha = alpha       # Learning factor
-
+        self.decay=0.003
         ###########
         ## TO DO ##
         ###########
@@ -40,11 +40,11 @@ class LearningAgent(Agent):
         # Update epsilon using a decay function of your choice
         # Update additional class parameters as needed
         # If 'testing' is True, set epsilon and alpha to 0
-        if(testing):
+        if testing :
             epsilon = 0
             alpha = 0
         elif self.learning:
-            self.epsilon = self.epsilon-0.005
+            self.epsilon = self.epsilon-self.decay
 
         return None
 
@@ -69,7 +69,7 @@ class LearningAgent(Agent):
         # With the hand-engineered features, this learning process gets entirely negated.
 
         # Set 'state' as a tuple of relevant data for the agent
-        state = waypoint,inputs['light'],inputs['oncoming'],inputs['left'], inputs['right']
+        state = waypoint,inputs['light'],inputs['oncoming'],inputs['left']
         if(self.learning):
             if state not in self.Q.keys():
                 self.createQ(state)
@@ -130,7 +130,9 @@ class LearningAgent(Agent):
             action=random.choice(self.valid_actions)
         else:
             action=self.get_maxQ(state)
-            
+            listOfActions = [key  for (key, value) in self.Q[state].items() if value == self.Q[state][action]]
+            if len(listOfActions)>1 :
+                action=random.choice(listOfActions)
 
         return action
 
@@ -182,7 +184,7 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent,learning=True,epsilon=0.8,alpha=0.4)
+    agent = env.create_agent(LearningAgent,learning=True)
 
     ##############
     # Follow the driving agent
